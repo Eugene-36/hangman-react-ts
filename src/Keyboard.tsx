@@ -34,14 +34,14 @@ interface KeyBoardProps {
   activeLetter: string[];
   inactiveLetter: string[];
   addGuessedLetter: (letter: string) => void;
-  disabled?: Boolean;
+  disabledAll?: Boolean;
 }
 
 const Keyboard = ({
   activeLetter,
   inactiveLetter,
   addGuessedLetter,
-  disabled = false,
+  disabledAll = false,
 }: KeyBoardProps) => {
   return (
     <div
@@ -61,7 +61,7 @@ const Keyboard = ({
             className={`${styles.btn} ${isActive ? styles.active : ''}  ${
               isInActive ? styles.inactive : ''
             }`}
-            disabled={isInActive || isActive || disabled}
+            disabled={isInActive || isActive || Boolean(disabledAll)}
             key={key}
           >
             {key}
