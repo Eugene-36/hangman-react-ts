@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 interface HangManWordProps {
   gussedLetters: string[];
   wordToGuess: string;
+  reveal?: Boolean;
 }
 
-const HangmanWord = ({ gussedLetters, wordToGuess }: HangManWordProps) => {
-  console.log('wordToGuess', wordToGuess);
-
+const HangmanWord = ({
+  gussedLetters,
+  wordToGuess,
+  reveal = false,
+}: HangManWordProps) => {
   return (
     <div
       style={{
@@ -23,7 +26,10 @@ const HangmanWord = ({ gussedLetters, wordToGuess }: HangManWordProps) => {
         <span style={{ borderBottom: '.1em solid black' }} key={index}>
           <span
             style={{
-              visibility: gussedLetters.includes(letter) ? 'visible' : 'hidden',
+              visibility:
+                gussedLetters.includes(letter) || reveal ? 'visible' : 'hidden',
+              color:
+                !gussedLetters.includes(letter) && reveal ? 'red' : 'black',
             }}
           >
             {letter}
